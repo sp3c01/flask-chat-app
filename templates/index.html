@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        socket = io()
+        socket.connect('http://127.0.0.1:5000/')
+    </script>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>Interstellar Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+</head>
+<body>
+
+    <div id="mySidebar" class="sidebar" >
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href=""><h1 class="text title text__title" style="cursor: pointer">flask room</h1></a>
+        <br>
+
+        <h2 id="online__users" class="online__users"></h2>
+        <br>
+        <br>
+
+        <h2 class="online__users about">About</h2>
+        <br>
+
+        <p class="info__text">
+            <span class="text">Interstellar Chat</span>
+            is a simple flask chat app developed and managed by <a href="https://github.com/parth-kabra/" target="_blank" class="text">@parth-kabra</a>. 
+        </p>
+        <br>
+    </div>
+
+    <section class="container">
+
+        <div id="message__area" class="messages">
+            
+            {% if messages|length > 0 %}
+                {% for msg in messages %}
+
+                    <span class="message" title="{{ msg.date_created }}" >
+
+                        <h1 class="text">{{ msg.user }}</h1>
+
+                        <p class="message__text">{{ msg.message|urlize() }}</p>
+
+                    </span>
+
+                {% endfor %}
+                    
+            {% else %}
+
+                <span class="start__chat" id = "start__chat">
+                    <h1 class="text get__started">Get the conversation going</h1>
+                </span>
+
+            {% endif %}
+
+        </div>
+
+        <form class="input__area" method="POST" id = "message__form">
+            <input type="text" id = "msg" placeholder="Type something..." class="message__text" required>
+            <i class='bx bx-rocket text' onclick="submit()"></i>
+            <input type="submit" hidden id="submit__hidden">
+            
+        </form>
+
+    </section>
+
+    <header class="header">
+
+        <span class="group__title">
+            <a href=""><h1 class="text text__title" style="cursor: pointer">flask room</h1></a>
+            <p id = "is__typing" class="typing"></p>
+        </span>
+
+        <i class='bx bx-menu text' id = "open__nav" onclick="openNav()"></i>
+    </header>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+</body>
+</html>

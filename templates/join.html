@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>Interstellar Chat | Join Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/join.css') }}">
+</head>
+<body>
+
+    <section>
+
+        <h1 class="join__title">Join <span class="text">Interstellar</span> Chat room</h1>
+
+        <br>
+
+        <form method="POST" action="/" class="join__form">
+            <span class="input__area">
+                <input type="text" placeholder="Username..." name="user_name" class="message__text" required>
+                <button type="submit" class="join__btn"><i class='bx bx-rocket text'></i></button>
+            </span>
+            <br>
+            <span class="condition">
+                <input type="checkbox" required class="marked">
+                <p class="terms">I agree with <a href="/terms" class="term__link" target="_blank">Terms and conditions</a> before entering Interstellar Chat</p>
+            </span>
+            <br>
+                <button  type="submit" class="button"><a class="view">Join Room ➜</a></button>
+        </form>
+
+    </section>
+    
+</body>
+</html>
